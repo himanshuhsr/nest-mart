@@ -1,4 +1,4 @@
-.loader{
+.loader {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -6,19 +6,26 @@
   align-items: center;
 }
 
-.section-heading{
+.section-heading {
   position: relative;
-    border-bottom: 1px solid #ececec;
-    padding-bottom: 20px;
-    font-size: 24px;
+  border-bottom: 1px solid #ececec;
+  padding-bottom: 20px;
+  font-size: 24px;
 }
 
-.section-heading::after{
+.section-heading::after {
   content: "";
-    width: 80px;
-    height: 2px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: #BCE3C9;
+  width: 80px;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #BCE3C9;
+}
+
+.main-section-heading {
+  font-size: 48px;
+  color: #253D4E;
+  font-weight: 700;
+  line-height: 1.2;
 }
