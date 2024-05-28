@@ -7,7 +7,7 @@ const NavbarMenus = () => {
 
     return (
         <>
-            <Container fluid style={{ paddingLeft: '10vw', paddingRight: '10vw', background: '#61B97F' }} className='py-3'>
+            <Container fluid  style={{ paddingLeft: '10vw', paddingRight: '10vw', background: '#61B97F' }} className='py-3 sticky-top'>
                 <div className='d-flex align-items-center justify-content-between'>
                     <div className='navbar-menus'>
                         <div className='d-flex align-items-center justify-content-start'>
