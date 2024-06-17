@@ -1,4 +1,4 @@
-import { Call, Email, Room, Schedule } from '@mui/icons-material'
+import { Call, Email, Room, Schedule, WhatsApp } from '@mui/icons-material'
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import './Footer.css';
@@ -112,6 +112,10 @@ const Footer = () => {
             </Col>
         </Row>
     </Container>
+
+    <a href="" className='fixed-button'>
+        <WhatsApp className='icon' />
+    </a>
     </>
   )
 }
