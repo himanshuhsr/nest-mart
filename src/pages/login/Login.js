@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Login.css';
 import Layout from '../layout/Layout';
 import { Container, Breadcrumb, Row, Col, Form } from 'react-bootstrap';
 import { Home } from '@mui/icons-material';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout } from '../../actions/authAction';
 
 const Login = () => {
+
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [security, setSecurity] = useState('');
+    const [err, setErr] = useState('');
+    const {loading, error} = useSelector(state=>state.auth);
+    const dispatch = useDispatch();
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        if(security == 8765){
+            dispatch(login({email, password}));
+        }else{
+            setErr('Wrong Security Code');
+        }
+    }
+
+    const handleLogout = () =>{
+        dispatch(logout())
+    }
+
     return (
         <Layout>
             <div className='py-3 border-bottom-1'>
@@ -28,12 +52,12 @@ const Login = () => {
                                 <Col lg={6}>
                                     <h1>Login</h1>
                                     <p>Don't have an account? <a href="">Create here</a></p>
-                                    <Form>
-                                        <Form.Control className='mb-3' type="text" placeholder='Username or Email*' />
-                                        <Form.Control className='mb-3' type="password" placeholder='Your Password*' />
+                                    <Form onSubmit={handleSubmit}>
+                                        <Form.Control className='mb-3' type="text" placeholder='Username or Email*' onChange={(e) => setEmail(e.target.value)} required />
+                                        <Form.Control className='mb-3' type="password" placeholder='Your Password*' onChange={(e)=>setPassword(e.target.value)} required />
                                         <Row className='justify-content-between align-items-center'>
                                             <Col lg={4}>
-                                                <Form.Control className='mb-3' type="text" placeholder='Security Code*' />
+                                                <Form.Control className='mb-3' type="text" placeholder='Security Code*' onChange={(e)=>setSecurity(e.target.value)} />
                                             </Col>
                                             <Col lg={4}>
                                                 <div className='security'>
@@ -51,10 +75,13 @@ const Login = () => {
                                             />
                                             <a href="" className='text-secondary'>Forgot Password?</a>
                                         </div>
-                                        <button className='mt-4'>Login</button>
+                                        <button type="submit" className='mt-4'>{loading ? 'Logging in....': 'Login'}</button>
                                     </Form>
+                                    {/* {error? {error}: ''} */}
+                                    {err ? <p>{err}</p>:''}
                                 </Col>
                             </Row>
+                            <button onClick={handleLogout}>Logout</button>
                         </Col>
                     </Row>
                 </Container>
