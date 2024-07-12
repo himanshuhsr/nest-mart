@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ProductListing.css'
 import { Breadcrumb, Card, Col, Container, Row } from 'react-bootstrap';
 import Layout from '../layout/Layout';
 import { Close, Home } from '@mui/icons-material';
+import axios from 'axios';
+import ProductCard from '../../components/productCard/ProductCard';
 
 const ProductListing = () => {
 
+    const [data, setData] = useState([]);
     const [selectedCategories, setSelectedCategories] = useState([1, 2, 3, 4, 5, 6]);
 
     const categories = [
@@ -42,6 +45,22 @@ const ProductListing = () => {
             setSelectedCategories([...selectedCategories, id]);
         }
     }
+
+    const fetchData = async()=>{
+        try{
+            const res = await axios.get('http://localhost:3030/api/v1/product/all');
+            console.log(res.data);
+            setData(res.data);
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+
+    useEffect(()=>{
+        fetchData();
+    }, []);
+
 
     return (
         <Layout>
@@ -89,7 +108,14 @@ const ProductListing = () => {
                             </ul>
                         </Card>
                     </Col>
-                    <Col lg={9}></Col>
+                    <Col lg={9}>
+                    <Row className='gy-5'>
+                    {data && data.map((product)=>{
+                        return <Col lg={4}>
+                        <ProductCard product={product} /></Col>
+                    })}
+                    </Row>
+                    </Col>
                 </Row>
             </Container>
         </Layout>

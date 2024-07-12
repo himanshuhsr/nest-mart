@@ -6,20 +6,21 @@ import { Home } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../../actions/authAction';
 
+
+
 const Login = () => {
-
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [security, setSecurity] = useState('');
     const [err, setErr] = useState('');
-    const {loading, error} = useSelector(state=>state.auth);
+    const {loading, error, user} = useSelector(state=>state.auth);
     const dispatch = useDispatch();
 
     const handleSubmit = (e) =>{
         e.preventDefault();
         if(security == 8765){
             dispatch(login({email, password}));
+            // console.log(user);
         }else{
             setErr('Wrong Security Code');
         }

@@ -4,7 +4,7 @@ import { Card, ButtonGroup, Button } from 'react-bootstrap';
 import { Tooltip, Rating } from '@mui/material';
 import { CompareArrowsOutlined, FavoriteBorderOutlined, FavoriteOutlined, RemoveRedEyeOutlined, ShoppingCart } from '@mui/icons-material';
 
-const ProductCard = () => {
+const ProductCard = (props) => {
     return (
         <>
             <Card className='rounded-4 p-3'>
@@ -29,8 +29,8 @@ const ProductCard = () => {
                     </Tooltip>
                 </div>
                 <div>
-                    <span>Snacks</span>
-                        <h6 className='mb-1'><a href="">Seeds of Change Organic Quinoa, Brown, & Red Rice</a></h6>
+                    <span>{props.product.category}</span>
+                        <h6 className='mb-1'><a href="">{props.product.name}</a></h6>
                         <div className='d-flex align-items-center'>
                             <Rating value={3.5} readOnly
                                 precision={0.5} size="small"
@@ -51,4 +51,4 @@ const ProductCard = () => {
     )
 }
 
-export default ProductCard
+export default ProductCard;
